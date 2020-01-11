@@ -13,6 +13,7 @@ app.use(express.json());
 fs.readFile("./db/db.json","json",function(data) {
     var notes = data;
 });
+var uniqueId = 0;
 
 //Require routes file
 require('./routes/htmlRoutes')(app);
