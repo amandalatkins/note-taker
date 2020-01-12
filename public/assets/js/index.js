@@ -34,12 +34,9 @@ var deleteNote = function(id) {
 
 // If there is an activeNote, display it, otherwise render empty inputs
 var renderActiveNote = function() {
-  console.log("Rendering active note");
-  console.log(activeNote);
   $saveNoteBtn.hide();
 
   if (typeof activeNote.id === "number") {
-    console.log("showing note");
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
     $noteTitle.val(activeNote.title);
@@ -70,8 +67,6 @@ var handleNoteDelete = function(event) {
   event.stopPropagation();
 
   var note = $(this).data('id');
-
-  console.log("Delete note "+note);
 
   if (activeNote.id === note) {
     activeNote = {};
@@ -116,8 +111,6 @@ var renderNoteList = function(notes) {
     var $li = $("<li class='list-group-item'>").data(note);
     $li.data('id',i);
 
-    console.log($li.data());
-
     var $span = $("<span>").text(note.title);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note' data-id="+i+">"
@@ -132,7 +125,6 @@ var renderNoteList = function(notes) {
 
 // Gets notes from the db and renders them to the sidebar
 var getAndRenderNotes = function() {
-  console.log("Getting and rendering notes");
   return getNotes().then(function(data) {
     renderNoteList(data);
   });
